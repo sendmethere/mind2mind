@@ -1,27 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
 import './index.css';
 
-import ReactDOM from "react-dom/client";
 import {
   BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
 
-import App from './App';
-import Maker from '../components/Maker';
-import Example from '../components/Example';
+
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import reducers from './reducers'
+
+import Maker from './components/Maker';
+import Example from './components/Example';
+import Layout from './components/Layout';
+
+const store = createStore(reducers)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />}/>
-      <Route path="maker" element={<Maker />}/>
-      <Route path="example" element={<Example />}/>
-    </Routes>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout/>}>
+              <Route path="maker" element={<Maker />}/>
+              <Route path="example" element={<Example />}/>
+          </Route>
+        </Routes>
+    </BrowserRouter>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

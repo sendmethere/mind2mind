@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Maker(props) {
+function Example(props) {
     return (
         <div>
-            
+            example
         </div>
     );
 }
 
-export default Maker;
+export default Example;

@@ -1,10 +1,10 @@
-import Hint from '../components/Hint';
+import Hint from './components/Hint';
 import './App.css';
 
 function App() {
   return (
     <div>
-      
+
     </div>
   );
 }
