@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/mind2mind/static/css/main.445a6ecc.css",
-    "main.js": "/mind2mind/static/js/main.7927f58b.js",
+    "main.js": "/mind2mind/static/js/main.bea60ba1.js",
     "static/media/logo.svg": "/mind2mind/static/media/logo.b2aaf0a0715b8976684a1744fb36ebc4.svg",
     "index.html": "/mind2mind/index.html",
     "main.445a6ecc.css.map": "/mind2mind/static/css/main.445a6ecc.css.map",
-    "main.7927f58b.js.map": "/mind2mind/static/js/main.7927f58b.js.map"
+    "main.bea60ba1.js.map": "/mind2mind/static/js/main.bea60ba1.js.map"
   },
   "entrypoints": [
     "static/css/main.445a6ecc.css",
-    "static/js/main.7927f58b.js"
+    "static/js/main.bea60ba1.js"
   ]
 }
