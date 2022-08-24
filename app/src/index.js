@@ -7,6 +7,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  HashRouter
 } from "react-router-dom";
 
 
@@ -23,14 +24,14 @@ const store = createStore(reducers)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <HashRouter>
         <Routes>
           <Route path="/" element={<Layout/>}>
               <Route path="" element={<Maker />}/>
               <Route path="example" element={<Example />}/>
           </Route>
         </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </Provider>
 );
 
