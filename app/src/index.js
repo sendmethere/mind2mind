@@ -26,7 +26,7 @@ root.render(
     <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout/>}>
-              <Route path="maker" element={<Maker />}/>
+              <Route path="" element={<Maker />}/>
               <Route path="example" element={<Example />}/>
           </Route>
         </Routes>
