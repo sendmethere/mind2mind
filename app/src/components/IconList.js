@@ -1,6 +1,9 @@
 import React from 'react';
+let emojis = require('../emojis.json');
 
 function IconList(props) {
+
+    
     return (
             <>
               <div
@@ -25,10 +28,18 @@ function IconList(props) {
                     </div>
                     {/*body*/}
                     <div className="relative p-6 flex-auto overflow-y-scroll" style={{maxHeight:"480px"}}>
-                      <p className="my-4 text-slate-500 text-lg leading-relaxed">
-
-
-                      </p>
+                      <div className='grid grid-cols-6 gap-3'>
+                      {emojis.map((emoji, index)=>{
+                        return (
+                          <div key={index} className="w-25 h-25 p-2 text-3xl rounded border border-slate-200 hover:cursor-pointer 
+                          hover:bg-slate-200 flex flex-col justify-center items-center"
+                          onClick={()=>{props.selectIcon(props.row, props.no, {icon:emoji.emoji, desc:emoji.desc})}}>
+                            {emoji.emoji}
+                            <span className='text-xs m-2'>{emoji.desc}</span>
+                            </div>
+                        )
+                      })}
+                      </div>
                     </div>
                     {/*footer*/}
                     <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">

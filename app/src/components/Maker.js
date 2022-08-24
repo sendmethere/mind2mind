@@ -11,12 +11,22 @@ function Maker(props) {
     const [suggestions, setSuggetions] = useState(["제안1", "제안2", "제안3", "제안4"]);
 
     const [icons, setIcons] = useState([]);
-    const [modal, setModal] = useState({open: false, activeIcon: 0});
+    const [modal, setModal] = useState({open: false, activeIcon: 0, row:0, no:0});
     const onOpenModal = (activeIcon) => {
-        setModal({open: !modal.open, activeIcon:activeIcon });
+        setModal({open: !modal.open, activeIcon:activeIcon, row:parseInt(activeIcon/4), no:activeIcon%4 });
     }
 
-    const [currentIcon, setCurrentIcon] = useState(null);
+    const selectIcon = (row, no, iconData) => {
+        let item_current = [...icons];
+        let item = icons[row][no];
+
+        item.icon = iconData.icon;
+        item.desc = iconData.desc;
+        item_current[row][no] = item;
+
+        setIcons(item_current);
+        onOpenModal();
+    }
 
     useEffect(()=>{
         var initialIcons = []
@@ -35,21 +45,6 @@ function Maker(props) {
         setIcons(initialIcons);
     },[])
 
-    const iconItems = icons.map((row, index) => {
-        return (
-                <div style={{background: colors[index]}} className="rounded p-2 grid grid-cols-5 gap-3">
-                    <div className="flex items-center"><div className="text-center grow">힌트 {index+1}</div></div>
-
-                    {row.map((icon, index_i) => {
-                        return (
-                            <Icon key={index*4+index_i} row={index} no={index_i} icon="😊" onOpenModal={onOpenModal}/>
-                        )
-                    })}
-                    
-                </div>
-        )
-    })
-
 
     return (
         <div className='md:flex justify-center' >
@@ -57,7 +52,7 @@ function Maker(props) {
                 <p className='text-center text-xl font-bold mt-2 mb-4'>문제 만들기</p>
                 {suggestions.map((choice, index)=>{
                     return(
-                        <Choice text={numberEmoji[index] + choice}></Choice>
+                        <Choice key={index} text={numberEmoji[index] + choice}></Choice>
                     )
                 })}
                 <Choice text="✏️ 직접 쓸게요"></Choice>
@@ -65,13 +60,27 @@ function Maker(props) {
             </div>
             <div style={{width: "480px"}} >
                 <div className="grid grid-rows-4 gap-3">
-                    {iconItems}
+                    {icons.map((row, index) => {
+                        return (
+                                <div key={index} style={{background: colors[index]}} className="rounded p-2 grid grid-cols-5 gap-3">
+                                    <div className="flex items-center"><div className="text-center grow">힌트 {index+1}</div></div>
+
+                                    {row.map((icon, index_i) => {
+                                        return (
+                                            <Icon key={index*4+index_i} row={index} no={index_i} icon={icons[index][index_i]["icon"]} onOpenModal={onOpenModal}/>
+                                        )
+                                    })}
+                                    
+                                </div>
+                        )
+                    })
+                    }
                 </div>
                 <div className='flex justify-end'>
                     <div className="rounded bg-sky-300 font-bold px-6 py-4 my-2 hover:cursor-pointer hover:brightness-105">완료</div>
                 </div>
             </div>
-            <>{modal.open && <IconList activeIcon={modal.activeIcon} onOpenModal={onOpenModal}/>}</>
+            <>{modal.open && <IconList activeIcon={modal.activeIcon} row={modal.row} no={modal.no} selectIcon={selectIcon} onOpenModal={onOpenModal}/>}</>
         </div>
     );
 }
