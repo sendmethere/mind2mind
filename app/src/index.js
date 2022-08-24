@@ -24,7 +24,7 @@ const store = createStore(reducers)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <HashRouter>
+    <HashRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path="/" element={<Layout/>}>
               <Route path="" element={<Maker />}/>
