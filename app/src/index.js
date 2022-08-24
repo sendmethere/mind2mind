@@ -27,7 +27,7 @@ root.render(
     <HashRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path="/" element={<Layout/>}>
-              <Route path="" element={<Maker />}/>
+              <Route path="maker" element={<Maker />}/>
               <Route path="example" element={<Example />}/>
           </Route>
         </Routes>
